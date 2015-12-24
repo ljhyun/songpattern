@@ -60,6 +60,8 @@ def findInitValue(feature, centroid):
 
 if __name__ == "__main__":
     newdata = './Geographical Original of Music-2/translate_default_features_1059_tracks.txt';
+    #filein = './Geographical Original of Music-2/default_features_1059_tracks.txt'
+    #parseData(filein,newdata)
     newfile = open(newdata,'rb')
     data = [line.strip('[] ').split(',') for line in newfile]
     
