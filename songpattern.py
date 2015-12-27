@@ -28,8 +28,10 @@ def isposdef(num):
 
 def findInitValue(feature, centroid):
     partition = [[] for l in range(0,len(centroid))]
-    covk =  [[[]] for l in range(0,len(centroid))]
+    covk =  [[[0]*len(feature[0]) for k in range(0,len(feature[0]))] for l in range(0,len(centroid))]
+    covk = covk.astype('float')
     meank = [[0]*len(feature[0]) for l in range(0,len(centroid))]
+
     for f in range(0,len(feature)):
         kmin = sys.maxint
         kidx = -1
@@ -42,17 +44,23 @@ def findInitValue(feature, centroid):
    
     #TODO: catch division by zero exception
     wgtk = [len(k)/len(feature) for k in partition]
+    a = [feature[item] for item in partition[0]]
     for c in range(0,len(partition)):
-        meank[c] = numpy.add(meank[c],[feature[item] for item in partition[c]])
+        for item in partition[c]:
+            meank[c] = numpy.add(meank[c],feature[item])
+
     #TODO: Check covariance matrix for positive semidefinite
     meank = [map(operator.div,mean,[len(mean)]*len(mean)) for mean in meank]
     for cluster in range(0,len(centroid)):
         diff = [0 for l in range(0,len(partition[cluster]))]
         for row in partition:
-            print feature[row[cluster]],meank[cluster]
+            #print feature[row[cluster]]
+            #print "NEW"
+            #print meank[cluster]
             diff = map(operator.sub,feature[row[cluster]],meank[cluster])
             covk[cluster] = numpy.add(covk[cluster],numpy.multiply(diff,numpy.matrix.transpose(numpy.matrix(diff))))
-        covk[cluster] = map(operator.div,covk[cluster],len(partition[cluster]))
+            covk[cluster] = covk[cluster] / len(partition[cluster])
+            print covk[0]
         if not isposdef(covk[cluster]):
             covk[cluster] = numpy.identity(len(feature[0]))
             
