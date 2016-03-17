@@ -2,11 +2,17 @@
 ##Classifying music data decomposed by MARSYAS[1] to identify country origin (Experimental using GMM instead of Kmean)
 ##Next 3 TODO List
 <ol>
-  <li>Finish kmean initialization function</li>
-  <li>Create 5-fold cross validation function</li>
-  <li>Create GMM classification function</li>
+  <li>Clean up code, increase readability</li>
 </ol>
 
+##COMPLETED!!
+###Achieved better 0.63238 accuracy for classification on 33 countries on 10-fold cross valiation
+
+##Future Work
+<ol>
+   <li>Cluster by musical similarities instead of countries</li>
+   <li>Experiment with more song data</li>
+</ol>
 ##References
 <ol>
   <li>G. Tzanetakis and P. Cook, “MARSYAS: a framework for audio analysis,” Organised Sound, vol. 4, pp. 169–175, 2000.</li>
