@@ -6,7 +6,7 @@
 </ol>
 
 ##COMPLETED!!
-###Achieved better 0.63238 accuracy for classification on 33 countries on 10-fold cross valiation
+###Achieved better result: 0.63238 accuracy for classification on 33 countries on 10-fold cross valiation
 
 ##Future Work
 <ol>
