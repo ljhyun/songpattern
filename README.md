@@ -10,8 +10,8 @@
 
 ##Future Work
 <ol>
-   <li>Cluster by musical similarities instead of countries</li>
-   <li>Experiment with more song data</li>
+   <li>Cluster by musical similarities rather then clustring based on countries</li>
+   <li>Experiment with more song data to reduce overfit</li>
 </ol>
 ##References
 <ol>
