@@ -11,7 +11,7 @@
 ##Future Work
 <ol>
    <li>Cluster by musical similarities rather then clustring based on countries</li>
-   <li>Experiment with more song data to reduce overfit</li>
+   <li>Experiment with more song data to reduce overfitting</li>
 </ol>
 ##References
 <ol>
