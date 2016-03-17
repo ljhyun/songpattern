@@ -53,7 +53,7 @@ class GMMCEM:
     '''
     def __normal_pdf(self,x,mean,cov):
         #Optional e to add to matrix before inversing to ensure matrix is invertible
-        e = np.add(cov,np.eye(len(x))*10**-6)
+        #e = np.add(cov,np.eye(len(x))*10**-6)
         xmu = np.subtract(x,mean);
         inv = np.linalg.inv(cov)
         detr = np.linalg.det(cov) 
@@ -112,10 +112,6 @@ class GMMCEM:
     Output: Predicted class label
     '''
     def trainGMM(self,minidx,maxidx):
-        #PCA reduction to 90 rank
-        self.feat = np.matrix(self.feat)
-        pca = PCA(n_components=90,whiten=True)
-        self.feat = pca.fit_transform(self.feat)
         label = self.__createTest(minidx,maxidx)
         init = self.__findGMValue()
         mk = init['mean']
@@ -153,6 +149,11 @@ class GMMCEM:
     Output: Accuracy of the cross validation
     '''
     def crossValidation(self,k):
+        #PCA reduction to 90 rank
+        self.feat = np.matrix(self.feat)
+        pca = PCA(n_components=90,whiten=True)
+        self.feat = pca.fit_transform(self.feat)
+
         step = len(self.label)/k
         acc = 0
         for i in range(k):
