@@ -5,9 +5,6 @@
   <li>Clean up code, increase readability</li>
 </ol>
 
-##COMPLETED!!
-###Achieved better result: 0.63238 accuracy for classification on 33 countries on 10-fold cross valiation
-
 ##Future Work
 <ol>
    <li>Cluster by musical similarities rather then clustring based on countries</li>
@@ -19,3 +16,6 @@
   <li>Fang Zhou, Claire Q and Ross. D. King Predicting the Geographical Origin of Music, ICDM, 2014</li>
   <li>Johannes Blo ̈mer, Kathrin Bujna. Simple Methods for Initializing the EM Algorithm for Gaussian Mixture Models</li>
 </ol>
+
+
+

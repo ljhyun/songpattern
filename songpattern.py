@@ -42,7 +42,8 @@ class GMMCEM:
     Output: Resulting test label list
     '''
     def __createTest(self,minidx,maxidx):
-        return self.label[0:minidx]+[-1 for _ in range(maxidx-minidx+1)]+self.label[maxidx+1:]
+        k = len(set(self.label))  
+        return self.label[0:minidx]+[random.randint(0,k-1) for _ in range(maxidx-minidx+1)]+self.label[maxidx+1:]
 
     '''
     Calculates the normal pdf 
@@ -64,16 +65,16 @@ class GMMCEM:
     '''
     M-step of the CEM algorithm
     '''
-    def __findGMValue(self):
+    def __findGMValue(self,label):
         k = len(set(self.label))  
         w = [float(0) for _ in range(k)]
         m = [[float(0)]*len(self.feat[0]) for _ in range(k)]
         c =  [[[float(0)]*len(self.feat[0]) for _ in range(len(self.feat[0]))] for _ in range(k)]
-
+        
         #sphere = [0 for _ in range(k)]
         #Weight Calculation
         for i1 in range(len(self.feat)):
-            idx = self.label[i1]
+            idx = label[i1]
             if idx >= 0:
                 w[idx] += 1
                 m[idx] = np.add(m[idx],self.feat[i1])
@@ -88,7 +89,7 @@ class GMMCEM:
 
         #Covariance Calculation
         for i2 in range(len(self.feat)):
-            idx = self.label[i2]
+            idx = label[i2]
             if idx >= 0:
                 xmu = np.asmatrix(np.subtract(self.feat[i2],m[idx]))
                 #sphere[idx]+=xmu.sum()**2
@@ -113,7 +114,7 @@ class GMMCEM:
     '''
     def trainGMM(self,minidx,maxidx):
         label = self.__createTest(minidx,maxidx)
-        init = self.__findGMValue()
+        init = self.__findGMValue(label)
         mk = init['mean']
         c = init['cov']
         w = init['weight']
@@ -136,7 +137,7 @@ class GMMCEM:
                 break
             p1 = sumgm
             
-            final = self.__findGMValue()
+            final = self.__findGMValue(label)
             mk = final['mean']
             c = final['cov']
             w = final['weight']
