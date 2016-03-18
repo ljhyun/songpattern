@@ -1,5 +1,8 @@
 # songpattern
 ##Classifying music data decomposed by MARSYAS[1] to identify country origin (Experimental using GMM instead of Kmean)
+
+##Mode completed
+
 ##Next 3 TODO List
 <ol>
   <li>Clean up code, increase readability</li>
